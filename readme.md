@@ -6,6 +6,8 @@ Purpose was to overlay the original page https://www.rijkswaterstaat.nl/water/wa
 
 Hosted on Heroku https://waterbeheer-front-e6a87c6ea5d4.herokuapp.com/
 
-app.js is a nodejs solution
+Two Solutions tried:
 
-index.html is an iframe solution - though it refuses to connect
+- "app.js" is a nodejs solution, and the final solution, though the vids don't work
+
+- "index.html" is an iframe solution - though it refuses to connect, probably CORS
