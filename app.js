@@ -5,7 +5,8 @@ const path = require("path");
 const fs = require("fs");
 
 const app = express();
-const PORT = 3000;
+// Use the PORT provided by Heroku or default to 3000
+const PORT = process.env.PORT || 3000;
 const baseURL = "https://www.rijkswaterstaat.nl";
 
 // Serve static files from the 'public' directory
