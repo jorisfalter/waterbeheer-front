@@ -330,19 +330,39 @@ https: app.get(
         }
       });
 
-      // link naar vijfde pagina op het eind
-      $('a[href="https://www.hwbp.nl/"]').each((_, element) => {
-        $(element).attr("href", "/water/vaarwegenoverzicht").html("Stormvloed");
-      });
+      //   // link naar vijfde pagina op het eind
+      //   $('a[href="https://www.hwbp.nl/"]').each((_, element) => {
+      //     $(element).attr("href", "/water/vaarwegenoverzicht").html("Stormvloed");
+      //   });
+
+      $("div.rich-text.rich-text--list").remove();
 
       // Inject JavaScript to rewrite content
       const customScript = `
                       <script>
                           document.addEventListener("DOMContentLoaded", function() {
                               let elements = document.querySelectorAll("p");
-                              if (elements[0]) elements[0].textContent = "";
-    
-  
+                              if (elements[0]) elements[0].textContent = "Als het stormt en het water heel hoog staat, is het extra belangrijk om goed op de dijken en andere watermuren te letten.";
+                              if (elements[1]) elements[1].textContent = "Het Watermanagementcentrum Nederland (WMCN) houdt dag en nacht de waterstanden en het weer in de gaten. Als er gevaar dreigt, waarschuwen ze de mensen die voor de dijken zorgen.";
+
+                              if (elements[3]) elements[3].textContent = "Als het water bij een meetpunt hoger komt dan een bepaalde grens, noemen we dat een stormvloed. Die grens is bepaald door te kijken naar hoe hoog het water eerder is geweest bij stormen. Deze grens is op elke plek anders en wordt ongeveer eens per 2 jaar bereikt.";
+                              if (elements[4]) elements[4].textContent = "Op elke plek hebben het WMCN en de mensen die voor de dijken zorgen afgesproken bij welke waterstanden er iets moet gebeuren. Er zijn twee belangrijke niveaus: het waarschuwingspeil, waarbij we extra opletten, en het alarmeringspeil, waarbij we meteen actie ondernemen.";
+                              if (elements[5]) elements[5].textContent = "Het eerste belangrijke waterniveau heet het waarschuwingspeil. Als het water daarboven komt, nemen de mensen die voor de dijken zorgen kleine maatregelen. Dit gebeurt ongeveer één keer per jaar. De dijken kunnen dit meestal goed aan, maar we blijven toch extra opletten.";
+                              if (elements[6]) elements[6].textContent = "Het tweede belangrijke waterniveau heet het alarmeringspeil. Als het water daarboven komt, nemen de mensen die voor de dijken zorgen grotere maatregelen. Het water is dan veel hoger, en de situatie is veel gevaarlijker. Dit gebeurt ongeveer één keer in de vijf jaar.";
+                              if (elements[7]) elements[7].textContent = "Als we denken dat het water hoger komt dan het waarschuwingspeil, komt de crisisadviesgroep Kust en Benedenrivieren samen in de Waterkamer.";
+                              if (elements[8]) elements[8].textContent = "In de Waterkamer houden waterexperts en een weerkundige van het KNMI de situatie goed in de gaten. Als ze verwachten dat het water hoger komt dan het waarschuwingspeil, waarschuwen ze de mensen die voor de dijken zorgen ongeveer 12 uur voordat het water op zijn hoogst is.";
+                              if (elements[9]) elements[9].textContent = "De stormvloedwaarschuwingen worden ook online gedeeld, zodat andere belangrijke organisaties en mensen snel de informatie kunnen zien.";  
+                              if (elements[10]) elements[10].textContent = "De mensen die voor de dijken zorgen nemen eerst kleinere maatregelen, zoals het sluiten van doorgangen in de dijken en het afsluiten van riolen. Als de experts denken dat het water zelfs boven het alarmeringspeil komt, worden er ook grotere maatregelen genomen, zoals het extra controleren van de dijken.";  
+                              if (elements[11]) elements[11].textContent = "";  
+                              if (elements[12]) elements[12].textContent = "Het WMCN gaat bij een alarmering niet zelf naar buiten om dijken en andere watermuren te controleren. Dat doen de mensen die voor de dijken zorgen, zoals de waterschappen en de regionale teams van Rijkswaterstaat. Met de waarschuwingen van het WMCN kunnen zij de juiste maatregelen nemen om Nederland veilig te houden.";  
+                              if (elements[13]) elements[13].textContent = "Het WMCN waarschuwt als eerste de volgende groepen:";  
+                              if (elements[14]) elements[14].textContent = "Daarna informeert het WMCN het publiek over het hoge water dat eraan komt. Dit doen ze via (social) media, zoals de website van Rijkswaterstaat, het Actueel Waterbericht, radio en televisie. De waterschappen roepen ondertussen dijklegers op. Dit zijn groepen vrijwilligers en professionals die de dijken controleren en, als het nodig is, maatregelen nemen.";  
+                              if (elements[15]) elements[15].textContent = "Als het nodig is, worden er crisisstaven ingeschakeld. Dit is een groep van belangrijke bestuurders die samenkomt als er een noodsituatie is. Bij gevaar worden de waterkeringen en stormvloedkeringen gesloten om Nederland te beschermen.";  
+                              if (elements[16]) elements[16].textContent = "";  
+                              if (elements[17]) elements[17].textContent = "Als het WMCN in actie is gekomen, maken we binnen een paar dagen na de storm een stormvloedflits. Hierin staat kort wat er tijdens de stormvloed is gebeurd en welke waarschuwingen en alarmeringen zijn gegeven.";  
+                              if (elements[18]) elements[18].textContent = "Als het water bij een of meer meetpunten hoger komt dan het grenspeil, noemen we dat een stormvloed. In dat geval maken we naast een stormvloedflits ook een stormvloedverslag. Dit verslag is uitgebreider en wordt binnen drie maanden na de storm gemaakt. Sinds 1948 zijn er stormvloedrapporten en sinds 1998 ook stormvloedflitsen.";  
+                              if (elements[19]) elements[19].textContent = "Het onderdeel Kust van het WMCN heette tot 2012 de Stormvloedseindienst (SVSD). In 2021 bestond deze dienst al 100 jaar en heeft hij al een eeuw lang waarschuwingsberichten gemaakt bij stormen.";  
+       
             
                           });
                       </script>
