@@ -235,7 +235,26 @@ https: app.get(
 
       // link naar vierde pagina op het eind
       $('a[href="https://www.hwbp.nl/"]').each((_, element) => {
-        $(element).attr("href", "/water/vaarwegenoverzicht").html("Stormvloed");
+        $(element)
+          .attr(
+            "href",
+            "/water/waterbeheer/bescherming-tegen-het-water/hoogwater/stormvloed"
+          )
+          .html("Stormvloed");
+      });
+
+      // In the third page route handler, before the customScript injection:
+      $('li:contains("De bekende Afsluitdijk")').each((_, element) => {
+        const text =
+          "De bekende Afsluitdijk is geen dijk maar een dam. Een dijk scheidt het water van het land en een dam scheidt water van water.";
+        $(element).html(text);
+      });
+
+      // In the third page route handler, before the customScript injection:
+      $('li:contains("Tot 2031 is")').each((_, element) => {
+        const text =
+          "Tot 2031 is €7,9 miljard beschikbaar om 1.500 km aan dijken op 300 plekken te versterken.";
+        $(element).html(text);
       });
 
       // Inject JavaScript to rewrite content
@@ -247,8 +266,6 @@ https: app.get(
 
 
                             if (elements[3]) elements[3].textContent = "Tijdens de watersnoodramp in 1953 zagen we hoe belangrijk dijken zijn voor Nederland. Daarom houdt Rijkswaterstaat de waterstanden altijd goed in de gaten. Als er gevaar is dat een dijk kan breken, waarschuwen we de mensen die voor de dijken zorgen. Zij zorgen er dan voor dat alles veilig blijft.";
-
-
           
                         });
                     </script>
