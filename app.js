@@ -233,9 +233,9 @@ https: app.get(
         }
       });
 
-      // link naar derde pagina op het eind
+      // link naar vierde pagina op het eind
       $('a[href="https://www.hwbp.nl/"]').each((_, element) => {
-        $(element).attr("href", "/water/vaarwegenoverzicht").html("Dijken");
+        $(element).attr("href", "/water/vaarwegenoverzicht").html("Stormvloed");
       });
 
       // Inject JavaScript to rewrite content
@@ -243,11 +243,93 @@ https: app.get(
                     <script>
                         document.addEventListener("DOMContentLoaded", function() {
                             let elements = document.querySelectorAll("p");
-                            if (elements[0]) elements[0].textContent = "";
+                            if (elements[0]) elements[0].textContent = "Een dijk is een hoge, gemaakte wal die het land erachter beschermt tegen hoog water en grote golven.";
+
+
+                            if (elements[3]) elements[3].textContent = "Tijdens de watersnoodramp in 1953 zagen we hoe belangrijk dijken zijn voor Nederland. Daarom houdt Rijkswaterstaat de waterstanden altijd goed in de gaten. Als er gevaar is dat een dijk kan breken, waarschuwen we de mensen die voor de dijken zorgen. Zij zorgen er dan voor dat alles veilig blijft.";
+
+
           
                         });
                     </script>
                 `;
+
+      // Append the custom script before the closing </body> tag
+      $("body").append(customScript);
+
+      // Send the modified HTML back to the client
+      res.send($.html());
+    } catch (error) {
+      console.error("Error fetching or modifying the page:", error);
+      res.status(500).send("Error loading the page");
+    }
+  }
+);
+
+// Vierde pagina - Stormvloed
+// https://www.rijkswaterstaat.nl/water/waterbeheer/bescherming-tegen-het-water/hoogwater/stormvloed
+https: app.get(
+  "/water/waterbeheer/bescherming-tegen-het-water/hoogwater/stormvloed",
+  async (req, res) => {
+    try {
+      // Fetch the original page content
+      const response = await axios.get(
+        `${baseURL}/water/waterbeheer/bescherming-tegen-het-water/hoogwater/stormvloed`
+      );
+      let html = response.data;
+
+      // Load the HTML into Cheerio for easy manipulation
+      const $ = cheerio.load(html);
+
+      // Inline the SVG logo
+      const logoPath = path.join(__dirname, "public/images/logo-nl.svg");
+      const logoSVG = fs.readFileSync(logoPath, "utf8");
+      const logo = $(
+        'img[alt="Logo Rijkswaterstaat | Ministerie van Infrastructuur en Waterstaat"]'
+      );
+      if (logo.length) {
+        logo.replaceWith(logoSVG); // Replace the <img> with inline SVG content
+      }
+
+      // Convert relative URLs to absolute URLs for CSS, JS, and other images
+      $('link[rel="stylesheet"]').each((_, element) => {
+        const href = $(element).attr("href");
+        if (href && href.startsWith("/")) {
+          $(element).attr("href", `${baseURL}${href}`);
+        }
+      });
+
+      $("script").each((_, element) => {
+        const src = $(element).attr("src");
+        if (src && src.startsWith("/")) {
+          $(element).attr("src", `${baseURL}${src}`);
+        }
+      });
+
+      $("img").each((_, element) => {
+        const src = $(element).attr("src");
+        if (src && src.startsWith("/")) {
+          $(element).attr("src", `${baseURL}${src}`);
+        }
+      });
+
+      // link naar vijfde pagina op het eind
+      $('a[href="https://www.hwbp.nl/"]').each((_, element) => {
+        $(element).attr("href", "/water/vaarwegenoverzicht").html("Stormvloed");
+      });
+
+      // Inject JavaScript to rewrite content
+      const customScript = `
+                      <script>
+                          document.addEventListener("DOMContentLoaded", function() {
+                              let elements = document.querySelectorAll("p");
+                              if (elements[0]) elements[0].textContent = "";
+    
+  
+            
+                          });
+                      </script>
+                  `;
 
       // Append the custom script before the closing </body> tag
       $("body").append(customScript);
